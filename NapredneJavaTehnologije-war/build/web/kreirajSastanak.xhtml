@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="user">
+                user
+            </ui:define>
+
+            <ui:define name="menu">
+                menu
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <p:fieldset>
+                            <p:panel header="Kreiraj sastanak">
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="false"/>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Datum sastanka:" for="datumSastanka" />
+                                    <p:calendar id="datumSastanka" value="#{mBKreirajSastanak.sastanak.datumSastanka}" title="Datum sastanka" pattern="dd/MM/yyyy" navigator="true">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </p:calendar>
+
+                                    <p:outputLabel value="Tema sastanka:" for="temaSastanka" />
+                                    <p:inputTextarea id="temaSastanka" value="#{mBKreirajSastanak.sastanak.temaSastanka}" title="TemaSastanka"/>
+
+                                    <p:outputLabel value="Izvestaj:" for="izvestaj" />
+                                    <p:inputTextarea id="izvestaj" value="#{mBKreirajSastanak.sastanak.izvestaj}" title="Izvestaj" required="true" requiredMessage="Niste uneli izveštaj sa sastanka."/>
+
+                                    <p:outputLabel value="Prostorija:" for="prostorija" />
+                                    <p:inputText id="prostorija" value="#{mBKreirajSastanak.sastanak.prostorija}" title="Prostorija" required="true" requiredMessage="Niste uneli prostoriju gde će se održati sastanak."/>
+
+                                    <p:outputLabel value="Projekat uokviru koga se održava sastanak:" for="idProjekta" />
+                                    <p:selectOneMenu id="idProjekta" converter="konverterSastanka" value="#{mBKreirajSastanak.sastanak.idProjekta}">
+                                        <f:selectItems value="#{mBKreirajSastanak.projekti}" var="projekat" itemValue="#{projekat}" itemLabel="#{projekat.nazivProjekta}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+                                <p:commandButton value="Sačuvaj" action="#{mBKreirajSastanak.sacuvajSastanak()}"/>
+                            </p:panel>
+                        </p:fieldset>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

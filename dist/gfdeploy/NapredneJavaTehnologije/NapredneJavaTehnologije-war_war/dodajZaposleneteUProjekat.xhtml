@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="left">
+                <ui:include src="menuForma.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <p:panelGrid columns="2" id="zaposleni">
+                    <h:outputLabel value="Zaposleni: " />
+                    <p:selectOneMenu value="#{mbKreirajProjekat.novoUcesce.zaposleniId}" converter="konverterBrojeva">
+                        <f:selectItems value="#{mbKreirajProjekat.zaposlene}" var="zaposleni" itemValue="#{zaposleni.idZaposlenog}" itemLabel="#{zaposleni.toString()} #{zaposleni.pozicija}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="Opis zaduzenja: " />
+                    <p:inputText value="#{mbKreirajProjekat.novoUcesce.opis}"/>
+                </p:panelGrid>
+                <p:commandButton ajax="true" value="Dodaj zaposlenog u projekat" actionListener="#{mbKreirajProjekat.dodajUcesce()}" process="@this zaposleni" update="personList"/>
+                
+                <p:dataTable var="ucesce" value="#{mbKreirajProjekat.listaUcesca}" rowKey="#{ucesce.hashCode}"  id="personList" >
+                            <p:column headerText="Zaposleni" style="width:150px">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{ucesce.zaposleniId}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{ucesce.zaposleniId}" style="width:100%"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Opis" style="width:150px">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{ucesce.opis}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{ucesce.opis}" style="width:100%"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                        </p:dataTable>
+            </p:panel>
+                         <p:commandButton value="Sačuvaj" action="#{mbKreirajProjekat.ubaciProjekat()}"/>
+                         
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+

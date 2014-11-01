@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="left">
+                <ui:include src="menuForma.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                    <f:view>
+                        
+                            <p:fieldset>
+                                <p:tabView id="tabView">
+                                    <p:tab title="Promena korisnikovih podataka">
+                                        <h:form>
+                                            <p:panel id="editUser">
+                                        <p:outputLabel value="Username:" for="username"/>
+                                        <p:inputText id="username" value="#{mBSesija.ulogovaniKorisnik.username}" title="Username" required="true" requiredMessage="Niste uneli naziv korisnika."/>
+                                        <p:message for="username"/>
+                                        <br/>
+
+                                        <p:outputLabel value="Ime:" for="ime"/>
+                                        <p:inputText id="ime" value="#{mBSesija.ulogovaniKorisnik.ime}" title="Ime" required="true" requiredMessage="Niste uneli ime korisnika."/>
+                                        <p:message for="ime"/>
+                                        <br/>
+
+                                        <p:outputLabel value="Prezime:" for="prezime" />
+                                        <p:inputText id="prezime" value="#{mBSesija.ulogovaniKorisnik.prezime}" title="Prezime" required="true" requiredMessage="Niste uneli prezime korisnika."/>
+                                        <p:message for="prezime"/>
+                                        <br/>
+
+                                        <p:outputLabel value="Email:" for="email" />
+                                        <p:inputText id="email" value="#{mBSesija.ulogovaniKorisnik.email}" title="Email" required="true" requiredMessage="Niste uneli korisnikov email.">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                        <p:message for="email"/>
+                                        <br/>
+                                        <p:commandButton value="Azuriraj podatke" update="editUser" action="#{mBAzurirajKorisnika.update()}"/>
+                                        </p:panel>
+                                        </h:form>
+                                    </p:tab>
+                                    <p:tab title="Promena korisničke šifre">
+                                        <h:form>
+                                            <p:panel id="editPassword">
+                                        <p:messages id="messages" showDetail="true"/> 
+                                   
+                                        <h:outputLabel for="pwd1" value="Stara sifra: *" />
+                                        <p:password id="pwd1" value="#{mbPromenaSifre.staraSifra}" label="Stara sifra" required="true"/>
+                                        <br/>
+
+                                        <h:outputLabel for="pwd2" value="Nova sifra: *" /> 
+                                        <p:password id="pwd2" value="#{mbPromenaSifre.novaSifra}" match="pwd3" label="Nova sifra" required="true">  
+                                             <f:validateLength minimum="6" />
+                                        </p:password>
+                                        <br/>
+                                        
+                                        <h:outputLabel for="pwd3" value="Potvrda nove sifre: *" />
+                                        <p:password id="pwd3" label="Potvrda nove sifre" required="true" value="#{mbPromenaSifre.ponoviNovuSifru}"/>
+                                        <br/>
+                                        <p:commandButton value="Promeni šifru" update="editPassword" action="#{mbPromenaSifre.promeniSifruKorisnika()}" /> 
+                                        </p:panel>
+                                        </h:form>
+                                    </p:tab>
+                                </p:tabView>
+                            </p:fieldset>
+                    </f:view>
+                
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="user">
+                user
+            </ui:define>
+
+            <ui:define name="menu">
+                menu
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <p:fieldset>
+                            <p:panel header="Prikaz svih projekata">
+
+                                <p:dataTable value="#{mBPrikaziProjekat.projekti}" var="item" paginator="true" rows="10">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Naziv projekta"/>
+                                        </f:facet>
+                                        <h:commandLink action="#{mBPrikaziProjekat.pokaziIzabraniProjekat(item)}" value="#{item.nazivProjekta}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Datum pocetka"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.datumPocetka}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Datum realizacije"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.datumRealizacije}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Aktuelan"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.aktuelan}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="FinansijskaSredstva"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.finansijskaSredstva}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </p:fieldset>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

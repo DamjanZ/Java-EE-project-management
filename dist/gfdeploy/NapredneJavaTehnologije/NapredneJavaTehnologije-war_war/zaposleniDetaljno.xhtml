@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="menu">
+                menu
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <!--<h1><h:outputText class="title" value="Azuriraj zaposlenog"/></h1>-->
+                        <p:fieldset>
+                            <p:panel header="Azuriraj zaposlenog">
+                                <p:panelGrid columns="2">
+
+                                    <h:outputLabel value="Ime:" for="ime" />
+                                    <p:inputText id="ime" value="#{mBAzurirajZaposlenog.zaposlen.ime}" title="Ime" required="true" requiredMessage="Niste uneli ime zaposlenog!"/>
+
+                                    <h:outputLabel value="Prezime:" for="prezime" />
+                                    <p:inputText id="prezime" value="#{mBAzurirajZaposlenog.zaposlen.prezime}" title="Prezime" required="true" requiredMessage="Niste uneli prezime zaposlenog!"/>
+                                    <h:outputLabel value="Pol:" for="pol" />
+                                    <p:selectOneMenu id="pol" value="#{mBAzurirajZaposlenog.zaposlen.pol}">
+                                        <f:selectItem itemLabel="Muško" itemValue="M"/>
+                                        <f:selectItem itemLabel="Žensko" itemValue="Z"/>
+                                    </p:selectOneMenu>
+
+                                    <h:outputLabel value="Da li je i dalje zaposlen u firmi:" for="pozicija" />
+                                    <p:selectBooleanCheckbox id="zaposlen" value="#{mBAzurirajZaposlenog.zaposlen.zaposlen}"/>
+
+                                    <h:outputLabel value="Pozicija:" for="pozicija" />
+                                    <p:inputText id="pozicija" value="#{mBAzurirajZaposlenog.zaposlen.pozicija}" title="Pozicija" required="true" requiredMessage="Niste uneli poziciju koju ima zaposleni u kompaniji!"/>
+
+                                    <h:outputLabel value="Datum zaposlenja:" for="datumZaposlenja" />
+                                    <p:calendar id="datumZaposlenja" value="#{mBAzurirajZaposlenog.zaposlen.datumZaposlenja}" title="Datum zaposlenja" pattern="dd/MM/yyyy" required="true" requiredMessage="Niste uneli datum zaposlenja!" navigator="true"/>
+
+                                    <h:outputLabel value="Telefon: " for="telefon" />
+                                    <p:inputText id="telefon" value="#{mBAzurirajZaposlenog.zaposlen.telefon}" title="Telefon" required="true" requiredMessage="Niste uneli broj telefona zaposlenog!">
+                                        <f:validator validatorId="telefonValidator"/>
+                                    </p:inputText>
+
+                                    <h:outputLabel value="Datum rodjenja:" for="datumRodjenja" />
+                                    <p:calendar id="datumRodjenja" value="#{mBAzurirajZaposlenog.zaposlen.datumRodjenja}" title="Datum rodjenja" pattern="dd/MM/yyyy" required="true" requiredMessage="Niste uneli datum rodjenja zaposlenog!" navigator="true">
+                                        <f:validator validatorId="datumRodjenjaValidator"/>
+                                    </p:calendar>
+
+                                    <h:outputLabel value="Naziv ulice:" for="ulica" />
+                                    <p:inputText id="ulica" value="#{mBAzurirajZaposlenog.zaposlen.ulica}" title="Ulica" />
+
+                                    <h:outputLabel value="Broj ulice:" for="brojUlice" />
+                                    <p:inputText id="brojUlice" value="#{mBAzurirajZaposlenog.zaposlen.brojUlice}" title="BrojUlice" />
+
+                                    <h:outputLabel value="Mesto:" for="ptt" />
+                                    <p:selectOneMenu id="ptt" converter="konverterMesta" value="#{mBAzurirajZaposlenog.zaposlen.ptt}" required="true" requiredMessage="The Ptt field is required.">
+                                        <f:selectItems value="#{mBAzurirajZaposlenog.mesta}" var="mesto" itemValue="#{mesto}" itemLabel="#{mesto.naziv}"/>
+                                    </p:selectOneMenu>
+
+                                    <p:commandButton id="back" value="Nazad" action="#{mBAzurirajZaposlenog.vratiNaZaposlene()}"/>  
+                                    <p:commandButton id="update" value="Azuriraj" action="#{mBAzurirajZaposlenog.uradiUpdate()}"/> 
+                                    
+                                </p:panelGrid>
+                                <p:messages />
+                            </p:panel>
+                        </p:fieldset>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

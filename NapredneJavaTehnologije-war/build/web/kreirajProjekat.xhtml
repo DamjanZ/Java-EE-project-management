@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    <script type="text/javascript">
+      function editLastDatatableRow(){
+      jQuery('.ui-datatable-data tr').last().find('span.ui-icon-pencil').each(function(){
+         jQuery(this).click()
+      });
+   }
+    </script>
+    
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="user">
+                user
+            </ui:define>
+
+            <ui:define name="menu">
+                menu
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="form1">
+                        
+                        <p:panel header="Kreiraj projekat" id="panelHeader">
+                            
+                            <h:panelGroup id="container">
+                                <p:messages autoUpdate="true"/>
+                                    <p:panelGrid columns="2">
+                                        <h:outputLabel value="Naziv projekta:" for="nazivProjekta" />
+                                        <p:inputText id="nazivProjekta" value="#{mbKreirajProjekat.projekat.nazivProjekta}" title="NazivProjekta" required="true" requiredMessage="Niste uneli naziv projekta."/>
+
+                                        <h:outputLabel value="Opis projekta:" for="opisProjekta" />
+                                        <p:inputTextarea id="opisProjekta" value="#{mbKreirajProjekat.projekat.opisProjekta}" title="OpisProjekta" required="false"/>
+
+                                        <h:outputLabel value="Datum pocetka:" for="datumPocetka" />
+                                        <p:calendar id="datumPocetka" value="#{mbKreirajProjekat.projekat.datumPocetka}" title="DatumPocetka" required="true" navigator="true" pattern="dd/MM/yyyy" binding="#{datumOd}"/>
+
+                                        <h:outputLabel value="Datum realizacije:" for="datumRealizacije" />
+                                        <p:calendar id="datumRealizacije" value="#{mbKreirajProjekat.projekat.datumRealizacije}"
+                                                    navigator="true" pattern="dd/MM/yyyy"> 
+                                            <f:validator validatorId="datumValidator"/>
+                                            <f:attribute name="datumOd" value="#{datumOd}"/>
+                                        </p:calendar>
+
+                                        <h:outputLabel value="Izdvojen budžet za projekat:" for="finansijskaSredstva" />
+                                        <p:inputText id="finansijskaSredstva" value="#{mbKreirajProjekat.projekat.finansijskaSredstva}" title="FinansijskaSredstva" converter="konverterBrojeva" converterMessage="Proverite da li ste uneli numericke vrednosti." required="true" requiredMessage="Niste uneli iznos novčanih sredstava izdvojenih za projekat."/>
+                                    </p:panelGrid> 
+                                <!--</p:panel>-->
+                                <!--Dodavanje zaduzenja--> 
+                                <!--<p:panel> -->
+                                    <p:panelGrid columns="2" id="zaposleni">
+                                        <h:outputLabel value="Zaposleni: " />
+                                        <p:selectOneMenu value="#{mbKreirajProjekat.novoUcesce.idZaposlenog}" converter="konverterZaposlenih">
+                                            <f:selectItems value="#{mbKreirajProjekat.zaposlene}" var="zaposleni" itemValue="#{zaposleni}" itemLabel="#{zaposleni.toString()}, #{zaposleni.pozicija}"/>
+                                        </p:selectOneMenu>
+                                        <h:outputLabel value="Opis zaduzenja: " />
+                                        <p:inputText value="#{mbKreirajProjekat.novoUcesce.zaduzenja}"/>
+                                    </p:panelGrid>
+                                    <p:commandButton ajax="true" value="Dodaj zaposlenog u projekat" actionListener="#{mbKreirajProjekat.dodajUcesce()}" process="@this zaposleni" update="personList"/>
+                                     <!--Tabela-->
+                                     <p:dataTable var="ucesce" value="#{mbKreirajProjekat.listaUcesca}" rowKey="#{ucesce.hashCode}"  id="personList" >
+                                                <p:column headerText="Zaposleni" style="width:150px">                                         
+                                                    <p:outputLabel value="#{ucesce.idZaposlenog.toString()}" style="width:100%"/>                                    
+                                                </p:column>
+
+                                                <p:column headerText="Opis" style="width:150px">
+                                                        <p:outputLabel value="#{ucesce.zaduzenja}" style="width:100%"/>
+                                                </p:column>
+                                     </p:dataTable>
+                                     <p:commandButton value="Sačuvaj" action="#{mbKreirajProjekat.ubaciProjekat()}" ajax="true" update="panelHeader"/>
+                            </h:panelGroup>
+                        </p:panel>
+                        
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

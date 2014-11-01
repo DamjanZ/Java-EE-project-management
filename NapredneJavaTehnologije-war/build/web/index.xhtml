@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Login forma</title>
+        <!--<h:outputStylesheet name="css/mycss.css"/>-->
+    </h:head>
+    <h:body>
+        <f:facet name="last">
+            <h:outputStylesheet name="css/mycss.css" />
+        </f:facet>
+
+        
+        
+            <h:form>
+                <div id="login">
+                <p:panel header="Prijava korisnika" id="loginPanel">
+
+                        <h:outputText value="Korisnicko ime:"/>
+                        <p:inputText id="username" value="#{korisnikManagedBean.korisnik.username}" required="Niste uneli korisničku šifru!"/><br/>
+                        <p:message for="username"/>
+                        <br/>
+                        <h:outputText value="Korisnicka sifra:"/>
+                        <p:password id="passswordForUser" value="#{korisnikManagedBean.korisnik.password}"/><br/>
+                        <p:message for="passswordForUser"/>
+                        <br/>
+                        <p:commandButton value="Prijava" action="#{korisnikManagedBean.login()}" update="loginPanel" styleClass="prijavaClass"/>
+                        <p:button value="Registracija" outcome="registracija" styleClass="regClass"/>
+                        <p:messages  globalOnly="true"/>
+                </p:panel>
+                </div>
+            </h:form>
+    </h:body>
+</html>

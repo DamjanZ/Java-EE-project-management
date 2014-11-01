@@ -1,0 +1,75 @@
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    <managed-bean>
+        <managed-bean-name>mBPrikaziProjekat</managed-bean-name>
+        <managed-bean-class>managedbeans.MBPrikaziProjekte</managed-bean-class>
+    
+        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBKreirajSastanak</managed-bean-name>
+        <managed-bean-class>managedbeans.MBKreirajSastanak</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBAzurirajZaposlenog</managed-bean-name>
+        <managed-bean-class>managedbeans.MBAzurirajZaposlenog</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>korisnikManagedBean</managed-bean-name>
+        <managed-bean-class>managedbeans.MBKorisnikLoginIRegistracija</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>    
+        <managed-bean-name>mBKreirajProjekat</managed-bean-name>
+        <managed-bean-class>managedbeans.MBKreirajProjekat</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mbDodajUcesce</managed-bean-name>
+        <managed-bean-class>managedbeans.MBDodajUcesce</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mbPromenaSifre</managed-bean-name>
+        <managed-bean-class>managedbeans.MBPromenaSifre</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBSesija</managed-bean-name>
+        <managed-bean-class>managedbeans.MBSesija</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBAzurirajKorisnika</managed-bean-name>
+        <managed-bean-class>managedbeans.MBAzurirajKorisnika</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBKreirajZaposlenog</managed-bean-name>
+        <managed-bean-class>managedbeans.MBKreirajZaposlenog</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mBAzurirajProjekat</managed-bean-name>
+        <managed-bean-class>managedbeans.MBAzurirajProjekat</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mBPrikaziZaposlene</managed-bean-name>
+        <managed-bean-class>managedbeans.MBPrikaziZaposlene</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+</faces-config>

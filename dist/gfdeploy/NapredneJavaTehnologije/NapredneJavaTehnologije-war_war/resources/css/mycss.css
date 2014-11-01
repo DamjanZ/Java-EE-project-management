@@ -1,0 +1,73 @@
+#j_idt6{
+  margin: 100px 199px;
+}
+
+#j_idt6 .ui-panel{
+	padding: 0!important;
+	margin: auto 237px !important;
+}
+
+#j_idt6_header, #j_idt33 .ui-panel-title{
+	text-align: center !important;
+}
+
+#j_idt6_content{
+	margin:10px inherit;
+}
+
+#j_idt6_content .ui-button{
+    width: 211px;
+}
+
+#j_idt15{
+  margin: 100px 243px;
+}
+
+#j_idt15 .ui-panel{
+	padding: 0!important;
+}
+
+#j_idt6 .ui-panel-titlebar, .registracijaGrid .ui-panel-titlebar{
+	text-align: center!important;
+}
+
+.registracijaGrid{
+	margin: 10px auto;
+}
+
+.registracijaGrid tr, .registracijaGrid td{
+	border: none !important;
+}
+
+#j_idt33 .ui-panel-titlebar{
+	display: -webkit-box !important;
+}
+
+#form1 .ui-helper-clearfix:after{
+	display: none !important;
+}
+
+#j_idt36_header .ui-helper-clearfix:after{
+	display: none !important;
+}
+
+.title{
+	color: #000;
+}
+
+#login [type=text],#login [type=password]{
+	padding: 0.2em -0.3em;
+	margin-left: 1px;
+}
+
+#login [type=text]{
+	margin-left: 6px;
+}
+
+#login .prijavaClass{
+	padding: 0 2em;
+}
+
+#login .regClass{
+	padding: 0 1.12em;
+}

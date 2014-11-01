@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="user">
+                user
+            </ui:define>
+
+            <ui:define name="menu">
+                menu
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <p:fieldset>
+                            <p:panel header="Prikaz svih zaposlenih">
+                                <p:dataTable paginator="true" rows="10" value="#{mBPrikaziZaposlene.zaposleni}" var="item">
+                                    <p:column headerText="Ime" sortBy="#{item.ime}" filterBy="#{item.ime}" filterMatchMode="contains">
+                                        <h:commandLink action="#{mBPrikaziZaposlene.prikaziDetaljno(item)}" value="#{item.toString()}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Pol"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.pol}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Pozicija"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.pozicija}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Datum zaposlenja"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.datumZaposlenja}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Zaposlen"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zaposlen}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Datum rodjenja"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.datumRodjenja}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </p:fieldset>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
